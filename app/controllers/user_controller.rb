@@ -51,7 +51,7 @@ class UserController < ApplicationController
 
 	private
 		def check_acc
-			if current_user.account.nil?
+			if !current_user.nil?
 				current_user.set_account
 			end
 		end
