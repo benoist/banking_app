@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+	before_action :check_acc
 	before_action :authenticate_user!, except: :home
 
 
@@ -47,5 +48,12 @@ class UserController < ApplicationController
 			redirect_to index_path
 		end
 	end
+
+	private
+		def check_acc
+			if current_user.account.nil?
+				current_user.set_account
+			end
+		end
 
 end
