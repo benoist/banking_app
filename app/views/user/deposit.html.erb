@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="small-5 columns">
+		<%= form_for(current_user, url: deposit_path(), method: :patch) do |f| %>
+			<h3><small>Your current balance is </small><%= number_to_currency(current_user.account.balance,:unit=>'€')   %>.</h3>
+			<p>Inform the amount for deposit:<%= text_field_tag(:amount, nil, data:{ 
+				role:'money', a_sep: ',', a_dec: '.' }) %></p>
+			<p>User Responsible: <%= text_field_tag 'note', current_user.email.to_s %></p>
+			<p><%= f.submit "Make Deposit" %></p>
+		<% end %>
+	</div>
+</div>

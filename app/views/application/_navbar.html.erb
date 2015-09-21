@@ -1,0 +1,43 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><strong><%= link_to "Banking App", root_path %></a></strong></h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="right">
+      <% if !current_user.nil? %>
+        <li class="divider"></li>
+        <li><%= link_to current_user.email, index_path %></li>
+      
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <%= link_to "Operations", "#" %>
+          <ul class="dropdown">
+            <li><%= link_to "Deposit", deposit_path() %></li>
+            <li><%= link_to "Withdraw", withdraw_path() %></li>
+            <li><%= link_to "Transfer", transfer_path() %></li>
+          </ul>
+        </li>
+      <li class="divider"></li>
+      
+      <% end %>
+      <li><%= link_to "About the site" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Contact Us" %></li>
+      <li class="divider"></li>
+      <% if current_user.nil? %>
+        <li><%= link_to "Login",  new_user_session_path  %></li>
+      <% else %>
+        <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="row">
+  <ul class="right button-group">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </ul>
+</div>

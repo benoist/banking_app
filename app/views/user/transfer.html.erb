@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="small-5 columns">
+		<%= form_for(current_user, url: transfer_path(), method: :patch) do |f| %>
+			<h3><small>Your current balance is </small><%= number_to_currency(current_user.account.balance,:unit=>'€')   %>.</h3>
+			<p>Inform the user you want to transfer to: </p><%= select_tag "user_id", options_from_collection_for_select(@users, "id", "email") %>
+			<p>Inform the amount you want to transfer:<%= text_field_tag(:amount, nil, data:{ 
+				role:'money', a_sep: ',', a_dec: '.' }) %></p>
+			<p>Responsible: <%= text_field_tag 'note', current_user.email.to_s %></p>
+			<p><%= f.submit "Transfer money" %></p>
+		<% end %>
+	</div>
+</div>

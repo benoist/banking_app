@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="large-12 columns">
+		<div class="nav-bar right">
+			<ul class="button-group">
+				<li>Welcome, <%= current_user.email %></li>
+			</ul>
+		</div>
+		<h2><small>Your current balance is </small><%= number_to_currency(current_user.account.balance,:unit=>'€')   %>.</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<aside class="large-3 columns">
+			<h5>Operations</h5>
+			<ul class="side-nav">
+				<li><%= link_to "Deposit into your account", deposit_path %></li>
+				<li><%= link_to "Withdraw from your account", withdraw_path %></li>
+				<li><%= link_to "Make a tranfer", transfer_path %></li>
+			</ul>			
+		</aside>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<h3><small>Last transaction: <%= current_user.account.note %></small></h3>
+	</div>
+</div>
