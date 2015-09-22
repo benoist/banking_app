@@ -22299,3 +22299,304 @@ Processing by UserController#home as HTML
   Rendered application/_navbar.html.erb (0.7ms)
   Rendered application/_footer.html.erb (0.0ms)
 Completed 200 OK in 153ms (Views: 151.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-22 07:34:07 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UserController#home as HTML
+  Rendered user/home.html.erb within layouts/application (3.8ms)
+  Rendered application/_navbar.html.erb (3.0ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 978ms (Views: 945.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-6dcaffc9c625852328b2f74cacbef9ed3783c475849d6a33ab245fd3bc06e0d2.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/vendor/modernizr.self-74da3245def7569da28115667be6a85a2ad97464abe707c9829c46d8975597bc.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation_and_overrides.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/application.self-f7a823b9722f84321c559adceb8660d1824d0d92bf148e2766637a7dbc8bd33e.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/user.self-8a00283e64574c86765b9d51a374ee914c6fb0ba22ccc5b5e3be197be72f0970.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/assets/autoNumeric.self-7ce08a06334c97b149b37813d0ca4e4aa848b1dcf3d43296e305921109f48387.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:09 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2015-09-22 07:34:10 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (2.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (164.2ms)
+  Rendered application/_navbar.html.erb (1.0ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 364ms (Views: 344.6ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-09-22 07:34:15 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rgxy9pvBHiuvyPm4Zy+ECrfcYb29YVNGt9OZ/qy5Bo0uBlrYewcuNOxQK1YEqGCyF2Sck+ROLttR/9L+9LJpug==", "user"=>{"email"=>"roberto.mendonca@me.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "roberto.mendonca@me.com"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (8.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-09-22 01:33:19.629035"], ["current_sign_in_at", "2015-09-22 06:34:15.922689"], ["sign_in_count", 16], ["updated_at", "2015-09-22 06:34:15.924148"], ["id", 1]]
+  [1m[36m (118.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mAccount Load (0.4ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+Redirected to http://localhost:3000/index
+Completed 302 Found in 535ms (ActiveRecord: 128.2ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-22 07:34:16 +0100
+Processing by UserController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.2ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mLog Load (0.4ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY "logs"."data_created" ASC[0m  [["user_id", 1]]
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.8ms)
+
+NoMethodError (undefined method `desc' for #<Log::ActiveRecord_Relation:0x007f74842aefb8>):
+  app/controllers/user_controller.rb:7:in `index'
+
+
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.1ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (37.2ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (25.6ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (51.2ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-22 07:34:52 +0100
+Processing by UserController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.2ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mLog Load (0.3ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (40.7ms)
+  Rendered application/_navbar.html.erb (1.4ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 243ms (Views: 211.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/custom.self-6dcaffc9c625852328b2f74cacbef9ed3783c475849d6a33ab245fd3bc06e0d2.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation_and_overrides.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/vendor/modernizr.self-74da3245def7569da28115667be6a85a2ad97464abe707c9829c46d8975597bc.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/autoNumeric.self-7ce08a06334c97b149b37813d0ca4e4aa848b1dcf3d43296e305921109f48387.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/user.self-8a00283e64574c86765b9d51a374ee914c6fb0ba22ccc5b5e3be197be72f0970.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/assets/application.self-f7a823b9722f84321c559adceb8660d1824d0d92bf148e2766637a7dbc8bd33e.js?body=1" for 127.0.0.1 at 2015-09-22 07:34:53 +0100
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-22 07:35:06 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (3.9ms)
+  Rendered application/_navbar.html.erb (2.0ms)
+  Rendered application/_footer.html.erb (0.3ms)
+Completed 200 OK in 176ms (Views: 171.6ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-22 07:35:10 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"c5YdF5BKOl5ukR688S4rdlJa8zESnf7SAfD6aW4OYQR0Vy/qJZZgK5IbJYn27ccaTe79QORonA0mLyDrVsi4LQ==", "amount"=>"55", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "accounts" SET "balance" = ?, "note" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 1520.0], ["note", "‎€55.0 credited by roberto.mendonca@me.com"], ["updated_at", "2015-09-22 06:35:10.530453"], ["id", 1]]
+  [1m[36m (229.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€55.0 credited by roberto.mendonca@me.com"], ["user_id", 1], ["data_created", "2015-09-22 06:35:10.763611"], ["operation", "deposit"], ["balance", 1520.0], ["created_at", "2015-09-22 06:35:10.765608"], ["updated_at", "2015-09-22 06:35:10.765608"]]
+  [1m[35m (127.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/index
+Completed 302 Found in 374ms (ActiveRecord: 359.0ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-22 07:35:10 +0100
+Processing by UserController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.2ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mLog Load (0.2ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc[0m  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (2.9ms)
+  Rendered application/_navbar.html.erb (0.9ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 164ms (Views: 158.5ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2015-09-22 07:35:15 +0100
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"HgX6Bqi11UDX2wMaxSeBMU7dbTixPvVQ5+0GyVcU2JUZxMj7HWmPNStROC/C5G1dUWljSUfLl4/AMtxLb9IBvA=="}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36mAccount Load (0.2ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 33ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-22 07:35:15 +0100
+Processing by UserController#home as HTML
+  Rendered user/home.html.erb within layouts/application (0.2ms)
+  Rendered application/_navbar.html.erb (1.0ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 176ms (Views: 174.6ms | ActiveRecord: 0.0ms)

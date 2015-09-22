@@ -4,7 +4,7 @@ class UserController < ApplicationController
 
 
 	def index
-		@log = Log.where(user_id: current_user.id)
+		@log = Log.where(user_id: current_user.id).order("data_created desc")
 	end
 
 	def transfer
