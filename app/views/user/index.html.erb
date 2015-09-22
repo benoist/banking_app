@@ -27,3 +27,35 @@
 		<h3><small>Last transaction: <%= current_user.account.note %></small></h3>
 	</div>
 </div>
+
+<div class="row">
+	<div class="large-3 columns">
+		<p>Date</p>
+	</div>
+	<div class="large-3 columns">
+		<p>Description</p>
+	</div>
+	<div class="large-3 columns">
+		<p>balance</p>
+	</div>
+	<div class="large-3 columns">
+		<p>Operation</p>
+	</div>
+	<hr />
+</div>	
+	<% @log.each do |log| %>
+	<div class="row">
+		<div class="large-3 columns">
+			<p><%=log.data_created%></p>
+		</div>
+		<div class="large-3 columns">
+			<p><%=log.description%></p>
+		</div>
+			<div class="large-3 columns">
+			<p><%=log.balance%></p>
+		</div>
+		<div class="large-3 columns">
+			<p><%=log.operation%></p>
+		</div>
+	</div>
+	<% end %>

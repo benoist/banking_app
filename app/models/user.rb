@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :account
+  has_many :logs
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
@@ -32,6 +33,7 @@ class User < ActiveRecord::Base
 			if amount > 0  
 				new_balance = self.account.balance + amount
 				self.account.update(balance: new_balance, note: "‎€#{amount} credited by #{note}")
+				register_log("‎€#{amount} credited by #{note}", self.id, "deposit", self.account.balance)
 			else
 				self.flash_notice = "Can't make the deposit because amount is inferior to zero"
 			end
@@ -45,6 +47,7 @@ class User < ActiveRecord::Base
 			if (amount > 0 && (self.account.balance - amount) > 0) 
 				new_balance = self.account.balance - amount
 				self.account.update(balance: new_balance, note: "‎€#{amount} withdraw by #{note}")
+				register_log("‎€#{amount} withdraw by #{note}", self.id, "withdraw", self.account.balance)
 			elsif amount < 0
 				self.flash_notice = "Can't withdraw. Amount inferior to zero"
 			elsif (self.account.balance - amount) > 0
@@ -69,9 +72,11 @@ class User < ActiveRecord::Base
 					end
 					new_balance = acc.account.balance + amount
 					acc.account.update(balance: new_balance, note: "‎€#{amount} transfer by #{note}")
+					register_log("‎€#{amount} transfer by #{note}", acc.id, "transfer", acc.account.balance)
 					if acc.save
 						new_balance = self.account.balance - amount
 						self.account.update(balance: new_balance, note: "‎€#{amount} transfer by #{note}")
+						register_log("‎€#{amount} transfer by #{note}", self.id, "transfer", self.account.balance)
 					else
 						self.flash_notice = "Transfer was declined"
 					end
@@ -87,4 +92,10 @@ class User < ActiveRecord::Base
 			self.flash_notice = "We only accept numbers"
 		end			
 	end
+
+	private 
+		def register_log(desc, user_id, op, balance)
+			@log = Log.new(description: desc, user_id: user_id, data_created: DateTime.now, operation: op, balance: balance)
+			@log.save
+		end
 end
