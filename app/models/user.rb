@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   # We could use a single method operation and hash the operation (deposit, withdraw and transfer)
   # In this example, the idea was creating a log historic but I run out of time.
 
+
   	def deposit(amount, note="command line")
   		#making sure user send a numeric number
   		if (amount.is_a? Numeric)
@@ -63,7 +64,11 @@ class User < ActiveRecord::Base
 	def transfer(user_id, amount, note="command line")
 		if (amount.is_a? Numeric)
 			if (amount > 0 && (self.account.balance - amount) > 0)
-				acc = User.find(user_id)
+				begin
+					acc = User.find(user_id)
+				rescue ActiveRecord::RecordNotFound => e
+					puts e
+				end
 				if acc.nil?
 					self.flash_notice = "User do not exist"
 				else

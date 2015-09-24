@@ -22581,3 +22581,427 @@ UserTest: test_password_should_be_present_(nonblank)
   [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
   [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
   [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (119.0ms)[0m  [1mCREATE TABLE "accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "balance" float DEFAULT 0.0, "note" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (153.8ms)[0m  CREATE TABLE "logs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "data_created" datetime, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "balance" float, "operation" varchar) 
+  [1m[36m (131.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (131.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (131.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (129.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (110.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (110.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150922015138')[0m
+  [1m[35m (111.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150919041253')
+  [1m[36m (178.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150922005223')[0m
+  [1m[35m (155.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150919202143')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('example1@mail.com', '$2a$04$ucfe1fNoxjSgIsX2sYgtquIJF7oBMeNTg7O4rZPnvHO0u11mYw1JC', '2015-09-22 06:55:02', '2015-09-22 06:55:02', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('example2@mail.com', '$2a$04$BBCjLXTjpyu63ScEvKcoWelGMSxdOXU3lEBWyhv8LDOTfK65a623y', '2015-09-22 06:55:02', '2015-09-22 06:55:02', 298486374)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('example3@mail.com', '$2a$04$ZgCX73YLt.wUNJeio5TLT.BgnwktywgurmEP8BbALYis9gMY25auW', '2015-09-22 06:55:02', '2015-09-22 06:55:02', 113629430)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "accounts"
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "logs"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "logs" ("created_at", "updated_at", "id") VALUES ('2015-09-22 06:55:02', '2015-09-22 06:55:02', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "logs" ("created_at", "updated_at", "id") VALUES ('2015-09-22 06:55:02', '2015-09-22 06:55:02', 298486374)[0m
+  [1m[35m (134.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------
+SiteFunctionsTest: test_deposit_for_logged_users_
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$/9fK5xSNlZ8yDSrh3yEYdeMXE19SKYFCKI6Ys/je4OY8jtVRxinDC"], ["created_at", "2015-09-22 06:55:02.786029"], ["updated_at", "2015-09-22 06:55:02.786029"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-09-22 07:55:02 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"example@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "example@mail.com"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2015-09-22 06:55:02.830793"], ["current_sign_in_at", "2015-09-22 06:55:02.830793"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-09-22 06:55:02.831783"], ["id", 980190963]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/index
+Completed 302 Found in 40ms (ActiveRecord: 0.7ms)
+Started GET "/index" for 127.0.0.1 at 2015-09-22 07:55:02 +0100
+Processing by UserController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 980190963]]
+  [1m[35mAccount Load (0.2ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36mLog Load (0.2ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc[0m  [["user_id", 980190963]]
+  Rendered user/index.html.erb within layouts/application (8.5ms)
+  Rendered application/_navbar.html.erb (2.9ms)
+  Rendered application/_footer.html.erb (0.3ms)
+Completed 200 OK in 377ms (Views: 354.3ms | ActiveRecord: 1.1ms)
+Started GET "/deposit" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 980190963]]
+  [1m[36mAccount Load (0.0ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered user/deposit.html.erb within layouts/application (2.2ms)
+  Rendered application/_navbar.html.erb (0.8ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 11ms (Views: 6.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "accounts" ("user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["user_id", 980190963], ["balance", 5.0], ["note", "‎€5 credited by Life"], ["created_at", "2015-09-22 06:55:03.290534"], ["updated_at", "2015-09-22 06:55:03.290534"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€5 credited by Life"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.292883"], ["operation", "deposit"], ["balance", 5.0], ["created_at", "2015-09-22 06:55:03.299544"], ["updated_at", "2015-09-22 06:55:03.299544"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------------------------
+SiteFunctionsTest: test_withdraw_for_not_logged_users_
+------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$KrPVZ.dhwoeSE98yAN/NJeV4WQRihVYyxtnl1lWun7QkrEhV/N0Vy"], ["created_at", "2015-09-22 06:55:03.306175"], ["updated_at", "2015-09-22 06:55:03.306175"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Started DELETE "/users/sign_out.980190963" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by Devise::SessionsController#destroy as 
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms)
+Started GET "/withdraw" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#withdraw as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------
+SiteFunctionsTest: test_deposit_for_not_logged_users_
+-----------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$etrBdoDmj0FbQ6yQZTthze0CSYoqv6OTvlT0tIaex5pCQxEL1xxiS"], ["created_at", "2015-09-22 06:55:03.324332"], ["updated_at", "2015-09-22 06:55:03.324332"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+Started DELETE "/users/sign_out.980190963" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by Devise::SessionsController#destroy as 
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms)
+Started GET "/deposit" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#deposit as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------------
+SiteFunctionsTest: test_transfer_for_logged_users_
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$0RaVUPYHPm2UhOsrcDfSj.NGpud.k4l8RsVftKPBr29IQWrysAwIG"], ["created_at", "2015-09-22 06:55:03.337861"], ["updated_at", "2015-09-22 06:55:03.337861"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"example@mail.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "example@mail.com"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-09-22 06:55:03.345486"], ["current_sign_in_at", "2015-09-22 06:55:03.345486"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-09-22 06:55:03.346367"], ["id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/index
+Completed 302 Found in 8ms (ActiveRecord: 0.4ms)
+Started GET "/index" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 980190963]]
+  [1m[36mAccount Load (0.0ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mLog Load (0.1ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc  [["user_id", 980190963]]
+  Rendered user/index.html.erb within layouts/application (1.3ms)
+  Rendered application/_navbar.html.erb (0.8ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 4.8ms | ActiveRecord: 0.4ms)
+Started GET "/transfer" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#transfer as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 980190963]]
+  [1m[35mAccount Load (0.0ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE (NOT (id = 980190963))[0m
+  Rendered user/transfer.html.erb within layouts/application (6.1ms)
+  Rendered application/_navbar.html.erb (0.8ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 15ms (Views: 10.7ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190962]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "accounts" ("user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["user_id", 980190962], ["balance", 9.0], ["note", "‎€9 credited by life"], ["created_at", "2015-09-22 06:55:03.385203"], ["updated_at", "2015-09-22 06:55:03.385203"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€9 credited by life"], ["user_id", 980190962], ["data_created", "2015-09-22 06:55:03.386650"], ["operation", "deposit"], ["balance", 9.0], ["created_at", "2015-09-22 06:55:03.387362"], ["updated_at", "2015-09-22 06:55:03.387362"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190963]]
+  [1m[35mAccount Load (0.0ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "accounts" ("id", "user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["id", 980190963], ["user_id", 980190963], ["balance", 3.0], ["note", "‎€3 transfer by command line"], ["created_at", "2015-09-22 06:55:03.392438"], ["updated_at", "2015-09-22 06:55:03.392438"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€3 transfer by command line"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.393825"], ["operation", "transfer"], ["balance", 3.0], ["created_at", "2015-09-22 06:55:03.394475"], ["updated_at", "2015-09-22 06:55:03.394475"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "accounts" SET "balance" = ?, "note" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 6.0], ["note", "‎€3 transfer by command line"], ["updated_at", "2015-09-22 06:55:03.397843"], ["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€3 transfer by command line"], ["user_id", 980190962], ["data_created", "2015-09-22 06:55:03.399064"], ["operation", "transfer"], ["balance", 6.0], ["created_at", "2015-09-22 06:55:03.399673"], ["updated_at", "2015-09-22 06:55:03.399673"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mAccount Load (0.1ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------------
+SiteFunctionsTest: test_transfer_for_not_logged_users_
+------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$LxoYYBmI83eGSk1N8TmZNODvrPd8KQxKQZRNwkDKBl.2EcWML.h8K"], ["created_at", "2015-09-22 06:55:03.406403"], ["updated_at", "2015-09-22 06:55:03.406403"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+Started DELETE "/users/sign_out.980190963" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by Devise::SessionsController#destroy as 
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms)
+Started GET "/transfer" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#transfer as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------------
+SiteFunctionsTest: test_withdraw_for_logged_users_
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$LK0CBE2GQbuLfA/7m4thOuZ7W0CrLWRGm.KaIlPDFuoee9FYdlPo6"], ["created_at", "2015-09-22 06:55:03.419391"], ["updated_at", "2015-09-22 06:55:03.419391"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"example@mail.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "example@mail.com"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-09-22 06:55:03.426878"], ["current_sign_in_at", "2015-09-22 06:55:03.426878"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-09-22 06:55:03.427760"], ["id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/index
+Completed 302 Found in 8ms (ActiveRecord: 0.4ms)
+Started GET "/index" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 980190963]]
+  [1m[36mAccount Load (0.0ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mLog Load (0.1ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc  [["user_id", 980190963]]
+  Rendered user/index.html.erb within layouts/application (1.3ms)
+  Rendered application/_navbar.html.erb (0.8ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 0.4ms)
+Started GET "/withdraw" for 127.0.0.1 at 2015-09-22 07:55:03 +0100
+Processing by UserController#withdraw as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 980190963]]
+  [1m[35mAccount Load (0.0ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered user/withdraw.html.erb within layouts/application (1.8ms)
+  Rendered application/_navbar.html.erb (0.8ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36mAccount Load (0.1ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "accounts" ("user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 980190963], ["balance", 50.0], ["note", "‎€50 credited by Life"], ["created_at", "2015-09-22 06:55:03.461540"], ["updated_at", "2015-09-22 06:55:03.461540"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€50 credited by Life"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.463038"], ["operation", "deposit"], ["balance", 50.0], ["created_at", "2015-09-22 06:55:03.463734"], ["updated_at", "2015-09-22 06:55:03.463734"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "accounts" SET "balance" = ?, "note" = ?, "updated_at" = ? WHERE "accounts"."id" = ?[0m  [["balance", 41.0], ["note", "‎€9 withdraw by Life"], ["updated_at", "2015-09-22 06:55:03.465609"], ["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€9 withdraw by Life"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.466777"], ["operation", "withdraw"], ["balance", 41.0], ["created_at", "2015-09-22 06:55:03.467335"], ["updated_at", "2015-09-22 06:55:03.467335"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------------
+UserTest: test_email_validation_should_reject_invalid_addresses
+---------------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'user@example,com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'user_at_foo.org' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'user.name@example.' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo@bar_baz$.c$m' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo@bar+bar.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------
+UserTest: test_transfer_account
+-------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$pgLgLPoNHFyQvpeO9w.Gt.39QGLJHifaCUfhMCyRirrZGki3QIupK"], ["created_at", "2015-09-22 06:55:03.488875"], ["updated_at", "2015-09-22 06:55:03.488875"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36mAccount Load (0.0ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "accounts" ("user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 980190963], ["balance", 500.0], ["note", "‎€500 credited by command line"], ["created_at", "2015-09-22 06:55:03.493132"], ["updated_at", "2015-09-22 06:55:03.493132"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€500 credited by command line"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.494595"], ["operation", "deposit"], ["balance", 500.0], ["created_at", "2015-09-22 06:55:03.495289"], ["updated_at", "2015-09-22 06:55:03.495289"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mAccount Load (0.0ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190962]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "accounts" ("id", "user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["id", 980190962], ["user_id", 980190962], ["balance", 300.0], ["note", "‎€300 transfer by command line"], ["created_at", "2015-09-22 06:55:03.500202"], ["updated_at", "2015-09-22 06:55:03.500202"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€300 transfer by command line"], ["user_id", 980190962], ["data_created", "2015-09-22 06:55:03.501655"], ["operation", "transfer"], ["balance", 300.0], ["created_at", "2015-09-22 06:55:03.502336"], ["updated_at", "2015-09-22 06:55:03.502336"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "accounts" SET "balance" = ?, "note" = ?, "updated_at" = ? WHERE "accounts"."id" = ?[0m  [["balance", 200.0], ["note", "‎€300 transfer by command line"], ["updated_at", "2015-09-22 06:55:03.505603"], ["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€300 transfer by command line"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.506917"], ["operation", "transfer"], ["balance", 200.0], ["created_at", "2015-09-22 06:55:03.507552"], ["updated_at", "2015-09-22 06:55:03.507552"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190962]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------------------------
+UserTest: test_associated_account_should_be_destroyed
+-----------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$Qk1JkYFRqwBPZTkPPvqLqexKOyvxYgYjMc1BAIhQme41sma6wfoHi"], ["created_at", "2015-09-22 06:55:03.514737"], ["updated_at", "2015-09-22 06:55:03.514737"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 980190963]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------
+UserTest: test_deposit_account
+------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$5aVzOAVSIgCBltSLYLIlCOaLpums0IT0TUCSjntbj2z1BKmerX7oK"], ["created_at", "2015-09-22 06:55:03.525671"], ["updated_at", "2015-09-22 06:55:03.525671"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36mAccount Load (0.1ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 980190963]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "accounts" ("user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 980190963], ["balance", 5.0], ["note", "‎€5 credited by command line"], ["created_at", "2015-09-22 06:55:03.530137"], ["updated_at", "2015-09-22 06:55:03.530137"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€5 credited by command line"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.531789"], ["operation", "deposit"], ["balance", 5.0], ["created_at", "2015-09-22 06:55:03.532524"], ["updated_at", "2015-09-22 06:55:03.532524"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+UserTest: test_password_should_have_a_minimum_length
+----------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------
+UserTest: test_email_addresses_should_be_unique
+-----------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$dPXYQs8n5xATix03axvjKuRCi9XZW00CPU.ssFgJ9Tkj66L8nOc2a"], ["created_at", "2015-09-22 06:55:03.545944"], ["updated_at", "2015-09-22 06:55:03.545944"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------
+UserTest: test_should_be_valid
+------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+UserTest: test_password_should_be_present_(nonblank)
+----------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+UserTest: test_email_should_be_present
+--------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-------------------------------
+UserTest: test_withdraw_account
+-------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@mail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "example@mail.com"], ["encrypted_password", "$2a$04$pKzYuHaKtW8FPCg4nTphQeJ0xybY.oq6zOWV3gZfopXhQCEmi1JLq"], ["created_at", "2015-09-22 06:55:03.568157"], ["updated_at", "2015-09-22 06:55:03.568157"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 980190963]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "accounts" ("user_id", "balance", "note", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["user_id", 980190963], ["balance", 500.0], ["note", "‎€500 credited by command line"], ["created_at", "2015-09-22 06:55:03.572482"], ["updated_at", "2015-09-22 06:55:03.572482"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€500 credited by command line"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.574030"], ["operation", "deposit"], ["balance", 500.0], ["created_at", "2015-09-22 06:55:03.574733"], ["updated_at", "2015-09-22 06:55:03.574733"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "accounts" SET "balance" = ?, "note" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 200.0], ["note", "‎€300 withdraw by command line"], ["updated_at", "2015-09-22 06:55:03.576663"], ["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€300 withdraw by command line"], ["user_id", 980190963], ["data_created", "2015-09-22 06:55:03.577883"], ["operation", "withdraw"], ["balance", 200.0], ["created_at", "2015-09-22 06:55:03.578487"], ["updated_at", "2015-09-22 06:55:03.578487"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------------------------
+UserTest: test_email_validation_should_acccept_valid_addresses
+--------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'user@foo.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'a_us@foo.bar.org' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'first.last@goo.jpp' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'alice+bob@baz.cn' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------
+UserControllerTest: test_index_page
+-----------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
