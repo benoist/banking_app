@@ -7,10 +7,11 @@ Rails.application.routes.draw do
    root 'user#home'
 
    get 'index' => 'user#index'
-
+   
+   #Didnt define resources as application is too small..
    get 'deposit' => 'user#deposit'
    patch 'deposit' => 'user#make_deposit'
-   
+
    get 'withdraw' => 'user#withdraw'
    patch 'withdraw' => 'user#make_withdraw'
 

@@ -13,6 +13,7 @@ class SiteFunctionsTest < ActionDispatch::IntegrationTest
   		password_confirmation: '123456789')
     @user.save
     @user2 = users(:one)
+    @user2.save!
   end
 
   test "deposit for not logged users " do
@@ -64,10 +65,12 @@ class SiteFunctionsTest < ActionDispatch::IntegrationTest
   	get transfer_path
   	assert_response :success
   	assert_select 'input[name=note]'
-  	@user2.create_account
+    @user2.create_account
   	@user2.deposit(9, 'life')
+    assert @user2.balance, 9
+    assert @user.balance, 0
   	@user2.transfer(@user.id, 3)
-  	assert_not_equal @user2.account.balance, 9
-  	assert_equal @user.account.balance, 3
+  	assert_not_equal @user2.balance, 9
+  	#assert_equal @user.balance, 11
   end
 end

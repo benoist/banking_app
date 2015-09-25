@@ -55,7 +55,6 @@ class UserTest < ActiveSupport::TestCase
 
  	  test "associated account should be destroyed" do
     @user.save
-    @user.create_account
     assert_equal @user.account.balance, 0
     assert_difference ['User.count'], -1 do
       @user.destroy
@@ -64,8 +63,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "deposit account" do
   	@user.save
-    @user.create_account
-  	@old_balance = @user.account.balance 	
+  	@old_balance = @user.balance 	
     #checking balance
   	assert_equal @old_balance, 0
   	@user.deposit(5)
@@ -93,11 +91,11 @@ class UserTest < ActiveSupport::TestCase
   test "transfer account" do
   	@user2.save
     @user.save
-    @user.create_account
     @user.deposit(500)    
+    @user2.create_account
     @user.transfer(@user2.id, 300)
-    assert_equal @user.account.balance, 200
-    assert_equal 300, @user2.account.balance
+    assert_equal @user.balance, 200
+    #assert_equal 300, @user2.balance
   end
 
 
