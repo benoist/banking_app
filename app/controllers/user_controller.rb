@@ -1,7 +1,7 @@
 class UserController < ApplicationController
 
 	before_action :authenticate_user!, except: :home
-	before_filter :valid_amount?, only: :make_deposit
+	before_filter :valid_amount?, only: [:make_deposit, :make_withdraw, :make_transfer]
 	after_filter :flash_notice, except: [:home, :index]
 
 	def index
@@ -13,7 +13,9 @@ class UserController < ApplicationController
 	end
 
 	def  make_deposit
+
 		current_user.deposit(params[:amount].to_f, params[:note])
+
 		if flash[:notice].nil?
 			flash[:notice] = "Success"
 		end
@@ -27,9 +29,14 @@ class UserController < ApplicationController
 	end
 
 	def make_transfer
+		if params[:user_id] == "" || params[:user_id].nil?
+			flash[:notice] = "Please inform the user"
+			redirect_to(:back)
+		else
 				current_user.transfer(params[:user_id].to_i, params[:amount].to_f, params[:note])
 				flash[:notice] = "Success"
 				redirect_to index_path
+		end
 	end
 
 	private
@@ -40,11 +47,15 @@ class UserController < ApplicationController
    	 end 
 
    	 def valid_amount?
+
 		if params[:amount].to_f < 0 
-			flash[:notice] = "Number can't be 0 or inferior "
+			flash[:notice] = "Number can't be 0 or inferior"
 			redirect_to(:back)
 		elsif params[:note] == ""
 			flash[:notice] = "User Responsible can't be blank"
+			redirect_to(:back)
+		elsif params[:amount]== ""
+			flash[:notice] = "Error. Please check the parameters"
 			redirect_to(:back)
 		end
    	 end

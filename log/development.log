@@ -25200,3 +25200,634 @@ Processing by UserController#home as HTML
   Rendered application/_navbar.html.erb (1.3ms)
   Rendered application/_footer.html.erb (0.1ms)
 Completed 200 OK in 175ms (Views: 174.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'testacc1059@hotmail.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "testacc1059@hotmail.com"], ["encrypted_password", "$2a$10$Rn6xSSrxKhUIhjH17HNaHOvumcf9pt13u2qF3ePZPzB/4hsomhr96"], ["created_at", "2015-09-26 14:39:34.928736"], ["updated_at", "2015-09-26 14:39:34.928736"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "accounts" ("user_id", "created_at", "updated_at") VALUES (?, ?, ?)  [["user_id", 73], ["created_at", "2015-09-26 14:39:34.957110"], ["updated_at", "2015-09-26 14:39:34.957110"]]
+  [1m[36m (126.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'testacc10590@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "testacc10590@hotmail.com"], ["encrypted_password", "$2a$10$Acnpv9V3/0aSBnnpnsMq.e2fZ0PTWYnXkWOiKE5cO11071XomlkkO"], ["created_at", "2015-09-26 14:39:44.660570"], ["updated_at", "2015-09-26 14:39:44.660570"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "accounts" ("user_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["user_id", 74], ["created_at", "2015-09-26 14:39:44.663268"], ["updated_at", "2015-09-26 14:39:44.663268"]]
+  [1m[35m (131.9ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "accounts" SET "balance" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 5000.0], ["updated_at", "2015-09-26 14:40:20.642228"], ["id", 68]]
+  [1m[36m (116.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€5000 credited by command line"], ["user_id", 73], ["data_created", "2015-09-26 14:40:20.807785"], ["operation", "deposit"], ["balance", 5000.0], ["created_at", "2015-09-26 14:40:20.816433"], ["updated_at", "2015-09-26 14:40:20.816433"]]
+  [1m[35m (161.1ms)[0m  commit transaction
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 74]]
+  [1m[35mAccount Load (0.3ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 74]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "accounts" SET "balance" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 1000.0], ["updated_at", "2015-09-26 14:40:31.468170"], ["id", 69]]
+  [1m[36m (133.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€1000 transfer by command line"], ["user_id", 74], ["data_created", "2015-09-26 14:40:31.603615"], ["operation", "transfer"], ["balance", 1000.0], ["created_at", "2015-09-26 14:40:31.604679"], ["updated_at", "2015-09-26 14:40:31.604679"]]
+  [1m[35m (118.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "accounts" SET "balance" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 4000.0], ["updated_at", "2015-09-26 14:40:31.728186"], ["id", 68]]
+  [1m[36m (128.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€1000 transfer by command line"], ["user_id", 73], ["data_created", "2015-09-26 14:40:31.858934"], ["operation", "transfer"], ["balance", 4000.0], ["created_at", "2015-09-26 14:40:31.860463"], ["updated_at", "2015-09-26 14:40:31.860463"]]
+  [1m[35m (139.3ms)[0m  commit transaction
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 74]]
+  [1m[35mAccount Load (0.2ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 74]]
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-26 16:54:17 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UserController#home as HTML
+  Rendered user/home.html.erb within layouts/application (2.2ms)
+  Rendered application/_navbar.html.erb (7.7ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 984ms (Views: 970.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-26 16:54:18 +0100
+Processing by UserController#home as HTML
+  Rendered user/home.html.erb within layouts/application (0.4ms)
+  Rendered application/_navbar.html.erb (1.0ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 217ms (Views: 215.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2015-09-26 16:54:21 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (2.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (56.8ms)
+  Rendered application/_navbar.html.erb (1.5ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 380ms (Views: 363.3ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-09-26 16:54:25 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wrS0vb6BnFcr5G1AjU5ul/F7GJEsVMth0i3KYvueHcId2g9t4r7xSYyFKG6zbHsjmJ9WNEjDzEUmwlNrkqDM8g==", "user"=>{"email"=>"roberto.mendonca@me.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "roberto.mendonca@me.com"]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-09-25 21:08:05.562086"], ["current_sign_in_at", "2015-09-26 15:54:25.783101"], ["sign_in_count", 19], ["updated_at", "2015-09-26 15:54:25.784891"], ["id", 1]]
+  [1m[36m (129.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/index
+Completed 302 Found in 253ms (ActiveRecord: 130.9ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-26 16:54:25 +0100
+Processing by UserController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.2ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mLog Load (0.5ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (45.2ms)
+  Rendered application/_navbar.html.erb (1.3ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 210ms (Views: 201.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 16:54:27 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.2ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (3.6ms)
+  Rendered application/_navbar.html.erb (1.8ms)
+  Rendered application/_footer.html.erb (0.3ms)
+Completed 200 OK in 166ms (Views: 163.0ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 16:54:28 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lHvTXwNJeZ5rmn6J5mcj7Y7LM2tzp0CA9ZMVtr9huRN2LPZSpQvz0AGpRv7NRt1G3phlofd9IvsKD+v6wbmeMg==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/index
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-26 16:54:28 +0100
+Processing by UserController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.1ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mLog Load (0.3ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (7.6ms)
+  Rendered application/_navbar.html.erb (1.3ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 203ms (Views: 200.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 16:55:18 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.3ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (22.7ms)
+  Rendered application/_navbar.html.erb (2.2ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 307ms (Views: 278.6ms | ActiveRecord: 2.5ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 16:55:20 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2VoVW9RuBWwAxzYvglZNk09SE7D+wzQJpHLWUqH4NFg7DTBWciyPImr0Dlipd7M4HwFFenoZVnJb7ige3yATeQ==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+RuntimeError ():
+  app/controllers/user_controller.rb:43:in `valid_amount?'
+
+
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (21.6ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.8ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (55.1ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (32.9ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.9ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (91.8ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 16:55:31 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2VoVW9RuBWwAxzYvglZNk09SE7D+wzQJpHLWUqH4NFg7DTBWciyPImr0Dlipd7M4HwFFenoZVnJb7ige3yATeQ==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/index
+Completed 302 Found in 18ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-26 16:55:31 +0100
+Processing by UserController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.4ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc[0m  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (25.9ms)
+  Rendered application/_navbar.html.erb (1.5ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 189ms (Views: 182.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/custom.self-6dcaffc9c625852328b2f74cacbef9ed3783c475849d6a33ab245fd3bc06e0d2.css?body=1" for 127.0.0.1 at 2015-09-26 16:55:31 +0100
+
+
+Started GET "/assets/foundation_and_overrides.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/vendor/modernizr.self-74da3245def7569da28115667be6a85a2ad97464abe707c9829c46d8975597bc.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/autoNumeric.self-7ce08a06334c97b149b37813d0ca4e4aa848b1dcf3d43296e305921109f48387.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/user.self-8a00283e64574c86765b9d51a374ee914c6fb0ba22ccc5b5e3be197be72f0970.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/assets/application.self-f7a823b9722f84321c559adceb8660d1824d0d92bf148e2766637a7dbc8bd33e.js?body=1" for 127.0.0.1 at 2015-09-26 16:55:32 +0100
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 16:55:58 +0100
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.2ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (14.1ms)
+  Rendered application/_navbar.html.erb (1.6ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 202ms (Views: 184.5ms | ActiveRecord: 1.5ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 16:55:59 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y+6r7AVazKF1S70EPf6fG7t3DGYdgkuuvfIjZpR+XXQpuY7hoxhG7x94hXMW32Gw6yRarJlYKdVCbt0q6qZ6VQ==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 16:55:59 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (4.5ms)
+  Rendered application/_navbar.html.erb (0.9ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 175ms (Views: 172.6ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:09:11 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hWd6BAU13QeMhz5/rJTey1QU7cYnJ5MeW/ihp0XgHkNnMF8Jo3dXSea0BgiHtSBgBEe7DKP98WWkZF/rOzg5Yg==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 42ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:09:11 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.3ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (62.4ms)
+  Rendered application/_navbar.html.erb (3.4ms)
+  Rendered application/_footer.html.erb (0.5ms)
+Completed 200 OK in 581ms (Views: 576.4ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:09:12 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CdGlrwZIl60UBfWj8g0LxhPH9IwTx0IwYqD/sji1hm7rhoCioAod4342zdTZLPVtQ5SiRpcdIEudPAH+Rm2hTw==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:09:12 +0100
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.4ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (3.6ms)
+  Rendered application/_navbar.html.erb (0.9ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 188ms (Views: 184.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.2ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (3.2ms)
+  Rendered application/_navbar.html.erb (0.9ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 173ms (Views: 169.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-6dcaffc9c625852328b2f74cacbef9ed3783c475849d6a33ab245fd3bc06e0d2.css?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation_and_overrides.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation.self-7f53ee51ac57668de0885700fb9aee9b061cf4821939e66c7435e036c61b783b.css?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/vendor/modernizr.self-74da3245def7569da28115667be6a85a2ad97464abe707c9829c46d8975597bc.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:19 +0100
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/autoNumeric.self-7ce08a06334c97b149b37813d0ca4e4aa848b1dcf3d43296e305921109f48387.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/user.self-8a00283e64574c86765b9d51a374ee914c6fb0ba22ccc5b5e3be197be72f0970.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started GET "/assets/application.self-f7a823b9722f84321c559adceb8660d1824d0d92bf148e2766637a7dbc8bd33e.js?body=1" for 127.0.0.1 at 2015-09-26 17:09:20 +0100
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:09:22 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zvTk9qJg86cdFzUjM2G0X37KAC+UwO25bl8runCIa98so8H7BCJ56XckDVQYQEr0LplW5RAaj8KRw9X2DlBM/g==", "amount"=>"4,334.00", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:09:22 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (3.1ms)
+  Rendered application/_navbar.html.erb (0.9ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 169ms (Views: 166.9ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:09:28 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SHFsL8shksJQm3NmBKObaXhx3YG2NCvOLHWPpGlCKXWqJkkibWMYjDqoSxEvgmXCKCKLSzLuSbXT6XHoF5oOVA==", "amount"=>"152.00", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:09:28 +0100
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.1ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (2.2ms)
+  Rendered application/_navbar.html.erb (1.0ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 175ms (Views: 172.6ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:09:53 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UEixaI3mE9Fptr3QR/UGpR8D9S+OxMAr9Is627/BqiCyH5RlK6SZnwOFhads1PgOT1Cj5QoeolALF8SXwRmNAQ==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.0ms)
+
+RuntimeError ():
+  app/controllers/user_controller.rb:16:in `make_deposit'
+
+
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.7ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (17.8ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (35.9ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:10:08 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UEixaI3mE9Fptr3QR/UGpR8D9S+OxMAr9Is627/BqiCyH5RlK6SZnwOFhads1PgOT1Cj5QoeolALF8SXwRmNAQ==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 18ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:10:08 +0100
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.2ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (15.6ms)
+  Rendered application/_navbar.html.erb (1.9ms)
+  Rendered application/_footer.html.erb (0.1ms)
+Completed 200 OK in 192ms (Views: 189.6ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:10:10 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aJ6hknx3+zUYFPu4fE/OA+csk4SiQ00MDfn4zTP1xsGKyYSf2jVxe3Inw89XbjCot3/FTiaZL3fyZQaBTS3h4A==", "amount"=>"", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/deposit
+Filter chain halted as :valid_amount? rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:10:10 +0100
+Processing by UserController#deposit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.2ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (2.9ms)
+  Rendered application/_navbar.html.erb (0.9ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 187ms (Views: 183.3ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:10:14 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4vk07iWryZyCaZNVLaq6pSvHfxg4XX2EE+wmDCu9urYArhHjg+lD0uhaqyIGi0QOe5Qp0ryHH//scNhAVWWdlw==", "amount"=>"10.00", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms)
+
+RuntimeError ():
+  app/controllers/user_controller.rb:16:in `make_deposit'
+
+
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.9ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (25.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (18.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (34.9ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:11:52 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4vk07iWryZyCaZNVLaq6pSvHfxg4XX2EE+wmDCu9urYArhHjg+lD0uhaqyIGi0QOe5Qp0ryHH//scNhAVWWdlw==", "amount"=>"10.00", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+RuntimeError ():
+  app/controllers/user_controller.rb:16:in `make_deposit'
+
+
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (25.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (17.9ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/roberto/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (47.2ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:12:00 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4vk07iWryZyCaZNVLaq6pSvHfxg4XX2EE+wmDCu9urYArhHjg+lD0uhaqyIGi0QOe5Qp0ryHH//scNhAVWWdlw==", "amount"=>"10.00", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.3ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "accounts" SET "balance" = ?, "updated_at" = ? WHERE "accounts"."id" = ?  [["balance", 115317.0], ["updated_at", "2015-09-26 16:12:00.358807"], ["id", 1]]
+  [1m[36m (152.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["description", "‎€10.0 credited by roberto.mendonca@me.com"], ["user_id", 1], ["data_created", "2015-09-26 16:12:00.517644"], ["operation", "deposit"], ["balance", 115317.0], ["created_at", "2015-09-26 16:12:00.528661"], ["updated_at", "2015-09-26 16:12:00.528661"]]
+  [1m[35m (138.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/index
+Completed 302 Found in 347ms (ActiveRecord: 293.5ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-26 17:12:00 +0100
+Processing by UserController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mAccount Load (0.1ms)[0m  SELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc[0m  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (9.0ms)
+  Rendered application/_navbar.html.erb (1.5ms)
+  Rendered application/_footer.html.erb (0.0ms)
+Completed 200 OK in 170ms (Views: 166.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/deposit" for 127.0.0.1 at 2015-09-26 17:45:59 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UserController#deposit as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.4ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  Rendered user/deposit.html.erb within layouts/application (92.7ms)
+  Rendered application/_navbar.html.erb (4.5ms)
+  Rendered application/_footer.html.erb (0.5ms)
+Completed 200 OK in 931ms (Views: 866.6ms | ActiveRecord: 2.1ms)
+
+
+Started PATCH "/deposit" for 127.0.0.1 at 2015-09-26 17:46:04 +0100
+Processing by UserController#make_deposit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"815o1BKE7Q/iUcHsnAIjfMLbllZ0CinhgXiNrNzrHI0RCU3ZtMZnQYhi+Zu3I93XkojAnPDQS5p+5HPgojM7rA==", "amount"=>"10", "note"=>"roberto.mendonca@me.com", "commit"=>"Make Deposit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (0.9ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35m (0.8ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "accounts" SET "balance" = ?, "updated_at" = ? WHERE "accounts"."id" = ?[0m  [["balance", 115327.0], ["updated_at", "2015-09-26 16:49:07.879103"], ["id", 1]]
+  [1m[35m (140.3ms)[0m  commit transaction
+  [1m[36m (0.8ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "logs" ("description", "user_id", "data_created", "operation", "balance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["description", "‎€10.0 credited by roberto.mendonca@me.com"], ["user_id", 1], ["data_created", "2015-09-26 16:49:08.055528"], ["operation", "deposit"], ["balance", 115327.0], ["created_at", "2015-09-26 16:49:08.126964"], ["updated_at", "2015-09-26 16:49:08.126964"]]
+  [1m[36m (148.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/index
+Completed 302 Found in 184146ms (ActiveRecord: 296.2ms)
+
+
+Started GET "/index" for 127.0.0.1 at 2015-09-26 17:49:08 +0100
+Processing by UserController#index as HTML
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mAccount Load (1.0ms)[0m  [1mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mLog Load (2.6ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."user_id" = ?  ORDER BY data_created desc  [["user_id", 1]]
+  Rendered user/index.html.erb within layouts/application (177.3ms)
+Completed 401 Unauthorized in 2593ms (ActiveRecord: 4.6ms)

@@ -4,10 +4,12 @@ class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+
   def setup 
-  	@user = User.new(email: 'example@mail.com', password: '123456789', 
+  	@user = User.create(email: 'example@mail.com', password: '123456789', 
   		password_confirmation: '123456789')
     @user2 = users(:one)
+    @user2.account = accounts(:one)
   end
 
   test "should be valid" do
@@ -54,7 +56,6 @@ class UserTest < ActiveSupport::TestCase
  	end
 
  	  test "associated account should be destroyed" do
-    @user.save
     assert_equal @user.account.balance, 0
     assert_difference ['User.count'], -1 do
       @user.destroy
@@ -62,7 +63,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "deposit account" do
-  	@user.save
   	@old_balance = @user.balance 	
     #checking balance
   	assert_equal @old_balance, 0
@@ -74,9 +74,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "withdraw account" do
-  	@user.save
-    @user.create_account
-  	@old_balance = @user.account.balance 	
+  	@old_balance = @user.balance 	
   	assert_equal @old_balance, 0
   	@user.withdraw(5)
   	assert_equal @user.account.balance, @old_balance
@@ -89,13 +87,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "transfer account" do
-  	@user2.save
-    @user.save
-    @user.deposit(500)    
-    @user2.create_account
+    @user.deposit(500) 
+    assert @user2.balance, 0
+    assert_equal @user.balance, 500
     @user.transfer(@user2.id, 300)
     assert_equal @user.balance, 200
-    #assert_equal 300, @user2.balance
+    assert_equal 300, @user2.reload.balance
+    @user.transfer(@user2.id, 500)
+    assert_equal 300, @user2.reload.balance
+    assert_equal @user.balance, 200
   end
 
 

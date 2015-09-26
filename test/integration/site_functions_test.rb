@@ -8,10 +8,9 @@ class SiteFunctionsTest < ActionDispatch::IntegrationTest
 
  
 
-    def setup 
-  	@user = User.new(email: 'example@mail.com', password: '123456789', 
+  def setup 
+  	@user = User.create(email: 'example@mail.com', password: '123456789', 
   		password_confirmation: '123456789')
-    @user.save
     @user2 = users(:one)
     @user2.save!
   end
@@ -23,12 +22,11 @@ class SiteFunctionsTest < ActionDispatch::IntegrationTest
   end
 
    test "deposit for logged users " do   	
-	post_via_redirect user_session_path, 'user[email]' => @user.email, 'user[password]' => @user.password
+	  post_via_redirect user_session_path, 'user[email]' => @user.email, 'user[password]' => @user.password
   	get deposit_path
   	assert_response :success
   	assert_select 'input[name=note]'
-  	@user.create_account
-  	@user.deposit(5, 'Life')
+  	@user.deposit(50, 'Life')
   end
 
 
@@ -73,4 +71,5 @@ class SiteFunctionsTest < ActionDispatch::IntegrationTest
   	assert_not_equal @user2.balance, 9
   	#assert_equal @user.balance, 11
   end
+
 end
